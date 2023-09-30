@@ -8,7 +8,7 @@ router = APIRouter(prefix="/api/v1/company", tags=["company"])
 
 
 @router.get(
-    "/check_domain",
+    "/check_url",
     response_model=CategoryResponse,
     description="получение всех company",
 )
