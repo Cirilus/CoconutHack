@@ -8,8 +8,10 @@ services:
 #    depends_on:
 #      db:
 #        condition: service_healthy
+    ports:
+      - "5000:5000"
     command: >
-      bash -c "poetry run uvicorn app:app --host 0.0.0.0 --port 8000"
+      bash -c "poetry run uvicorn app:app --host 0.0.0.0 --port 5000"
 
 #  db:
 #    image: postgres:latest
@@ -28,18 +30,18 @@ services:
 #      timeout: 5s
 #      retries: 5
 
-  nginx:
-    build:
-      dockerfile: ./Dockerfile
-      context: .docker/nginx
-    container_name: nginx
-    volumes:
-      - /etc/letsencrypt:/etc/letsencrypt
-    depends_on:
-      - app
-    ports:
-      - "80:80"
-      - "443:443"
+#  nginx:
+#    build:
+#      dockerfile: ./Dockerfile
+#      context: .docker/nginx
+#    container_name: nginx
+#    volumes:
+#      - /etc/letsencrypt:/etc/letsencrypt
+#    depends_on:
+#      - app
+#    ports:
+#      - "80:80"
+#      - "443:443"
 
 volumes:
   postgres_storage:
